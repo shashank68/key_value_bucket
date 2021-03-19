@@ -53,7 +53,7 @@ def update(telegram_id):
     pubkey = Pubkeys(
         telegram_id=telegram_id,
         pub_key=request.form["pub_key"],
-        last_date=datetime.now(timezone.utc),
+        last_date=datetime.utcnow().timestamp(),
     )
     pubkey.save(force_insert=True)
 
