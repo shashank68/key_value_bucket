@@ -47,13 +47,11 @@ def update(telegram_id):
             entry.last_date = str(datetime.utcnow().timestamp())
             return "updated", 200
 
-    pubkey = Pubkeys(
+    Pubkeys.replace(
         telegram_id=telegram_id,
         pub_key=request.form["pub_key"],
         last_date=datetime.utcnow().timestamp(),
-    )
-    pubkey.save(force_insert=True)
-
+    ).execute()
     return "updated", 200
 
 
