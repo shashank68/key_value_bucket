@@ -2,7 +2,7 @@ import os
 import psycopg2
 
 from flask import Flask, abort, request
-from peewee import IntegerField, CharField, Model
+from peewee import IntegerField, CharField, TextField, Model
 from datetime import datetime
 from playhouse.db_url import connect
 
@@ -16,7 +16,7 @@ class BaseModel(Model):
 
 class Pubkeys(BaseModel):
     telegram_id = IntegerField(primary_key=True)
-    pub_key = CharField()
+    pub_key = TextField()
     last_date = CharField()
 
 
