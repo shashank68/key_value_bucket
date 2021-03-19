@@ -1,7 +1,9 @@
 import os
+import psycopg2
+
 from flask import Flask, abort, request
-from peewee import IntegerField, CharField, DateTimeField, SqliteDatabase, Model
-from datetime import datetime, timezone
+from peewee import IntegerField, CharField, Model
+from datetime import datetime
 from playhouse.db_url import connect
 
 db = connect(os.environ.get("DATABASE_URL"))
