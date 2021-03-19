@@ -41,12 +41,6 @@ def check(telegram_id):
 @app.route("/update/<int:telegram_id>", methods=["POST"])
 def update(telegram_id):
 
-    for entry in Pubkeys.select():
-        if entry.telegram_id == telegram_id:
-            entry.pub_key = request.form["pub_key"]
-            entry.last_date = str(datetime.utcnow().timestamp())
-            return "updated", 200
-
     Pubkeys.replace(
         telegram_id=telegram_id,
         pub_key=request.form["pub_key"],
