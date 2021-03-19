@@ -1,6 +1,6 @@
 from flask import Flask, abort, request
 from peewee import IntegerField, CharField, TextField, Model, SqliteDatabase
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 db = SqliteDatabase("pub_keys.db")
@@ -44,7 +44,7 @@ def update(telegram_id):
     Pubkeys.replace(
         telegram_id=telegram_id,
         pub_key=request.form["pub_key"],
-        last_date=datetime.utcnow().timestamp(),
+        last_date=str(datetime.now(timezone.utc).timestamp()),
     ).execute()
     return "updated", 200
 
